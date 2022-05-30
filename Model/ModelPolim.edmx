@@ -1,0 +1,577 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище DiplomModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cklad">
+          <Key>
+            <PropertyRef Name="IdCklad" />
+          </Key>
+          <Property Name="IdCklad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cpisanie">
+          <Key>
+            <PropertyRef Name="IdCpisanie" />
+          </Key>
+          <Property Name="IdCpisanie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCtelag" Type="int" Nullable="false" />
+          <Property Name="НомерДокумента" Type="int" Nullable="false" />
+          <Property Name="Количество" Type="decimal" Precision="10" Scale="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ctelag">
+          <Key>
+            <PropertyRef Name="IdCtelag" />
+          </Key>
+          <Property Name="IdCtelag" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCklad" Type="int" Nullable="false" />
+          <Property Name="IdMaterial" Type="int" Nullable="false" />
+          <Property Name="НомерСтелажа" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="НомерПолки" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Осталось" Type="decimal" Precision="10" Scale="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EdIzmer">
+          <Key>
+            <PropertyRef Name="IdEdIzamer" />
+          </Key>
+          <Property Name="IdEdIzamer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="IdMaterial" />
+          </Key>
+          <Property Name="IdMaterial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdEdIzamer" Type="int" Nullable="false" />
+          <Property Name="IdTip" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PoctavYchet">
+          <Key>
+            <PropertyRef Name="IdPoctav" />
+            <PropertyRef Name="IdPostHaYchet" />
+          </Key>
+          <Property Name="IdPoctav" Type="int" Nullable="false" />
+          <Property Name="IdPostHaYchet" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Poctavzik">
+          <Key>
+            <PropertyRef Name="IdPoctav" />
+          </Key>
+          <Property Name="IdPoctav" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PostavHaYchet">
+          <Key>
+            <PropertyRef Name="IdPostHaYchet" />
+          </Key>
+          <Property Name="IdPostHaYchet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Дата" Type="date" Nullable="false" />
+          <Property Name="НомерДокумента" Type="int" Nullable="false" />
+          <Property Name="IdPoctav" Type="int" Nullable="false" />
+          <Property Name="IdMaterial" Type="int" Nullable="false" />
+          <Property Name="Цена" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Количество" Type="decimal" Precision="10" Scale="3" Nullable="false" />
+          <Property Name="IdCtelag" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tip">
+          <Key>
+            <PropertyRef Name="IdTip" />
+          </Key>
+          <Property Name="IdTip" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Cpisanie_Ctelag">
+          <End Role="Ctelag" Type="Self.Ctelag" Multiplicity="1" />
+          <End Role="Cpisanie" Type="Self.Cpisanie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ctelag">
+              <PropertyRef Name="IdCtelag" />
+            </Principal>
+            <Dependent Role="Cpisanie">
+              <PropertyRef Name="IdCtelag" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ctelag_Cklad">
+          <End Role="Cklad" Type="Self.Cklad" Multiplicity="1" />
+          <End Role="Ctelag" Type="Self.Ctelag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cklad">
+              <PropertyRef Name="IdCklad" />
+            </Principal>
+            <Dependent Role="Ctelag">
+              <PropertyRef Name="IdCklad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ctelag_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="Ctelag" Type="Self.Ctelag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="IdMaterial" />
+            </Principal>
+            <Dependent Role="Ctelag">
+              <PropertyRef Name="IdMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Material_EdIzmer">
+          <End Role="EdIzmer" Type="Self.EdIzmer" Multiplicity="1" />
+          <End Role="Material" Type="Self.Material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EdIzmer">
+              <PropertyRef Name="IdEdIzamer" />
+            </Principal>
+            <Dependent Role="Material">
+              <PropertyRef Name="IdEdIzamer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Material_Tip">
+          <End Role="Tip" Type="Self.Tip" Multiplicity="1" />
+          <End Role="Material" Type="Self.Material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tip">
+              <PropertyRef Name="IdTip" />
+            </Principal>
+            <Dependent Role="Material">
+              <PropertyRef Name="IdTip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PoctavYchet_Poctavzik">
+          <End Role="Poctavzik" Type="Self.Poctavzik" Multiplicity="1" />
+          <End Role="PoctavYchet" Type="Self.PoctavYchet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poctavzik">
+              <PropertyRef Name="IdPoctav" />
+            </Principal>
+            <Dependent Role="PoctavYchet">
+              <PropertyRef Name="IdPoctav" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PoctavYchet_PostavHaYchet">
+          <End Role="PostavHaYchet" Type="Self.PostavHaYchet" Multiplicity="1" />
+          <End Role="PoctavYchet" Type="Self.PoctavYchet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PostavHaYchet">
+              <PropertyRef Name="IdPostHaYchet" />
+            </Principal>
+            <Dependent Role="PoctavYchet">
+              <PropertyRef Name="IdPostHaYchet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostavHaYchet_Ctelag">
+          <End Role="Ctelag" Type="Self.Ctelag" Multiplicity="1" />
+          <End Role="PostavHaYchet" Type="Self.PostavHaYchet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ctelag">
+              <PropertyRef Name="IdCtelag" />
+            </Principal>
+            <Dependent Role="PostavHaYchet">
+              <PropertyRef Name="IdCtelag" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostavHaYchet_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="PostavHaYchet" Type="Self.PostavHaYchet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="IdMaterial" />
+            </Principal>
+            <Dependent Role="PostavHaYchet">
+              <PropertyRef Name="IdMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище DiplomModelContainer">
+          <EntitySet Name="Cklad" EntityType="Self.Cklad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cpisanie" EntityType="Self.Cpisanie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ctelag" EntityType="Self.Ctelag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EdIzmer" EntityType="Self.EdIzmer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PoctavYchet" EntityType="Self.PoctavYchet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Poctavzik" EntityType="Self.Poctavzik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PostavHaYchet" EntityType="Self.PostavHaYchet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tip" EntityType="Self.Tip" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cpisanie_Ctelag" Association="Self.FK_Cpisanie_Ctelag">
+            <End Role="Ctelag" EntitySet="Ctelag" />
+            <End Role="Cpisanie" EntitySet="Cpisanie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ctelag_Cklad" Association="Self.FK_Ctelag_Cklad">
+            <End Role="Cklad" EntitySet="Cklad" />
+            <End Role="Ctelag" EntitySet="Ctelag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ctelag_Material" Association="Self.FK_Ctelag_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="Ctelag" EntitySet="Ctelag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Material_EdIzmer" Association="Self.FK_Material_EdIzmer">
+            <End Role="EdIzmer" EntitySet="EdIzmer" />
+            <End Role="Material" EntitySet="Material" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Material_Tip" Association="Self.FK_Material_Tip">
+            <End Role="Tip" EntitySet="Tip" />
+            <End Role="Material" EntitySet="Material" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PoctavYchet_Poctavzik" Association="Self.FK_PoctavYchet_Poctavzik">
+            <End Role="Poctavzik" EntitySet="Poctavzik" />
+            <End Role="PoctavYchet" EntitySet="PoctavYchet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PoctavYchet_PostavHaYchet" Association="Self.FK_PoctavYchet_PostavHaYchet">
+            <End Role="PostavHaYchet" EntitySet="PostavHaYchet" />
+            <End Role="PoctavYchet" EntitySet="PoctavYchet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostavHaYchet_Ctelag" Association="Self.FK_PostavHaYchet_Ctelag">
+            <End Role="Ctelag" EntitySet="Ctelag" />
+            <End Role="PostavHaYchet" EntitySet="PostavHaYchet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostavHaYchet_Material" Association="Self.FK_PostavHaYchet_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="PostavHaYchet" EntitySet="PostavHaYchet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DiplomModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cklad">
+          <Key>
+            <PropertyRef Name="IdCklad" />
+          </Key>
+          <Property Name="IdCklad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Ctelag" Relationship="Self.FK_Ctelag_Cklad" FromRole="Cklad" ToRole="Ctelag" />
+        </EntityType>
+        <EntityType Name="Cpisanie">
+          <Key>
+            <PropertyRef Name="IdCpisanie" />
+          </Key>
+          <Property Name="IdCpisanie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCtelag" Type="Int32" Nullable="false" />
+          <Property Name="НомерДокумента" Type="Int32" Nullable="false" />
+          <Property Name="Количество" Type="Decimal" Precision="10" Scale="3" Nullable="false" />
+          <NavigationProperty Name="Ctelag" Relationship="Self.FK_Cpisanie_Ctelag" FromRole="Cpisanie" ToRole="Ctelag" />
+        </EntityType>
+        <EntityType Name="Ctelag">
+          <Key>
+            <PropertyRef Name="IdCtelag" />
+          </Key>
+          <Property Name="IdCtelag" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCklad" Type="Int32" Nullable="false" />
+          <Property Name="IdMaterial" Type="Int32" Nullable="false" />
+          <Property Name="НомерСтелажа" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="НомерПолки" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Осталось" Type="Decimal" Precision="10" Scale="3" Nullable="false" />
+          <NavigationProperty Name="Cklad" Relationship="Self.FK_Ctelag_Cklad" FromRole="Ctelag" ToRole="Cklad" />
+          <NavigationProperty Name="Cpisanie" Relationship="Self.FK_Cpisanie_Ctelag" FromRole="Ctelag" ToRole="Cpisanie" />
+          <NavigationProperty Name="Material" Relationship="Self.FK_Ctelag_Material" FromRole="Ctelag" ToRole="Material" />
+          <NavigationProperty Name="PostavHaYchet" Relationship="Self.FK_PostavHaYchet_Ctelag" FromRole="Ctelag" ToRole="PostavHaYchet" />
+        </EntityType>
+        <EntityType Name="EdIzmer">
+          <Key>
+            <PropertyRef Name="IdEdIzamer" />
+          </Key>
+          <Property Name="IdEdIzamer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Material" Relationship="Self.FK_Material_EdIzmer" FromRole="EdIzmer" ToRole="Material" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="IdMaterial" />
+          </Key>
+          <Property Name="IdMaterial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdEdIzamer" Type="Int32" Nullable="false" />
+          <Property Name="IdTip" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ctelag" Relationship="Self.FK_Ctelag_Material" FromRole="Material" ToRole="Ctelag" />
+          <NavigationProperty Name="EdIzmer" Relationship="Self.FK_Material_EdIzmer" FromRole="Material" ToRole="EdIzmer" />
+          <NavigationProperty Name="Tip" Relationship="Self.FK_Material_Tip" FromRole="Material" ToRole="Tip" />
+          <NavigationProperty Name="PostavHaYchet" Relationship="Self.FK_PostavHaYchet_Material" FromRole="Material" ToRole="PostavHaYchet" />
+        </EntityType>
+        <EntityType Name="Poctavzik">
+          <Key>
+            <PropertyRef Name="IdPoctav" />
+          </Key>
+          <Property Name="IdPoctav" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PostavHaYchet" Relationship="Self.PoctavYchet" FromRole="Poctavzik" ToRole="PostavHaYchet" />
+        </EntityType>
+        <EntityType Name="PostavHaYchet">
+          <Key>
+            <PropertyRef Name="IdPostHaYchet" />
+          </Key>
+          <Property Name="IdPostHaYchet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Дата" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="НомерДокумента" Type="Int32" Nullable="false" />
+          <Property Name="IdPoctav" Type="Int32" Nullable="false" />
+          <Property Name="IdMaterial" Type="Int32" Nullable="false" />
+          <Property Name="Цена" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Количество" Type="Decimal" Precision="10" Scale="3" Nullable="false" />
+          <Property Name="IdCtelag" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ctelag" Relationship="Self.FK_PostavHaYchet_Ctelag" FromRole="PostavHaYchet" ToRole="Ctelag" />
+          <NavigationProperty Name="Material" Relationship="Self.FK_PostavHaYchet_Material" FromRole="PostavHaYchet" ToRole="Material" />
+          <NavigationProperty Name="Poctavzik" Relationship="Self.PoctavYchet" FromRole="PostavHaYchet" ToRole="Poctavzik" />
+        </EntityType>
+        <EntityType Name="Tip">
+          <Key>
+            <PropertyRef Name="IdTip" />
+          </Key>
+          <Property Name="IdTip" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Material" Relationship="Self.FK_Material_Tip" FromRole="Tip" ToRole="Material" />
+        </EntityType>
+        <Association Name="FK_Ctelag_Cklad">
+          <End Role="Cklad" Type="Self.Cklad" Multiplicity="1" />
+          <End Role="Ctelag" Type="Self.Ctelag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cklad">
+              <PropertyRef Name="IdCklad" />
+            </Principal>
+            <Dependent Role="Ctelag">
+              <PropertyRef Name="IdCklad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cpisanie_Ctelag">
+          <End Role="Ctelag" Type="Self.Ctelag" Multiplicity="1" />
+          <End Role="Cpisanie" Type="Self.Cpisanie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ctelag">
+              <PropertyRef Name="IdCtelag" />
+            </Principal>
+            <Dependent Role="Cpisanie">
+              <PropertyRef Name="IdCtelag" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ctelag_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="Ctelag" Type="Self.Ctelag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="IdMaterial" />
+            </Principal>
+            <Dependent Role="Ctelag">
+              <PropertyRef Name="IdMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostavHaYchet_Ctelag">
+          <End Role="Ctelag" Type="Self.Ctelag" Multiplicity="1" />
+          <End Role="PostavHaYchet" Type="Self.PostavHaYchet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ctelag">
+              <PropertyRef Name="IdCtelag" />
+            </Principal>
+            <Dependent Role="PostavHaYchet">
+              <PropertyRef Name="IdCtelag" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Material_EdIzmer">
+          <End Role="EdIzmer" Type="Self.EdIzmer" Multiplicity="1" />
+          <End Role="Material" Type="Self.Material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EdIzmer">
+              <PropertyRef Name="IdEdIzamer" />
+            </Principal>
+            <Dependent Role="Material">
+              <PropertyRef Name="IdEdIzamer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Material_Tip">
+          <End Role="Tip" Type="Self.Tip" Multiplicity="1" />
+          <End Role="Material" Type="Self.Material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tip">
+              <PropertyRef Name="IdTip" />
+            </Principal>
+            <Dependent Role="Material">
+              <PropertyRef Name="IdTip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostavHaYchet_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="PostavHaYchet" Type="Self.PostavHaYchet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="IdMaterial" />
+            </Principal>
+            <Dependent Role="PostavHaYchet">
+              <PropertyRef Name="IdMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PoctavYchet">
+          <End Role="Poctavzik" Type="Self.Poctavzik" Multiplicity="*" />
+          <End Role="PostavHaYchet" Type="Self.PostavHaYchet" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DiplomEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cklad" EntityType="Self.Cklad" />
+          <EntitySet Name="Cpisanie" EntityType="Self.Cpisanie" />
+          <EntitySet Name="Ctelag" EntityType="Self.Ctelag" />
+          <EntitySet Name="EdIzmer" EntityType="Self.EdIzmer" />
+          <EntitySet Name="Material" EntityType="Self.Material" />
+          <EntitySet Name="Poctavzik" EntityType="Self.Poctavzik" />
+          <EntitySet Name="PostavHaYchet" EntityType="Self.PostavHaYchet" />
+          <EntitySet Name="Tip" EntityType="Self.Tip" />
+          <AssociationSet Name="FK_Ctelag_Cklad" Association="Self.FK_Ctelag_Cklad">
+            <End Role="Cklad" EntitySet="Cklad" />
+            <End Role="Ctelag" EntitySet="Ctelag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cpisanie_Ctelag" Association="Self.FK_Cpisanie_Ctelag">
+            <End Role="Ctelag" EntitySet="Ctelag" />
+            <End Role="Cpisanie" EntitySet="Cpisanie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ctelag_Material" Association="Self.FK_Ctelag_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="Ctelag" EntitySet="Ctelag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostavHaYchet_Ctelag" Association="Self.FK_PostavHaYchet_Ctelag">
+            <End Role="Ctelag" EntitySet="Ctelag" />
+            <End Role="PostavHaYchet" EntitySet="PostavHaYchet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Material_EdIzmer" Association="Self.FK_Material_EdIzmer">
+            <End Role="EdIzmer" EntitySet="EdIzmer" />
+            <End Role="Material" EntitySet="Material" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Material_Tip" Association="Self.FK_Material_Tip">
+            <End Role="Tip" EntitySet="Tip" />
+            <End Role="Material" EntitySet="Material" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostavHaYchet_Material" Association="Self.FK_PostavHaYchet_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="PostavHaYchet" EntitySet="PostavHaYchet" />
+          </AssociationSet>
+          <AssociationSet Name="PoctavYchet" Association="Self.PoctavYchet">
+            <End Role="Poctavzik" EntitySet="Poctavzik" />
+            <End Role="PostavHaYchet" EntitySet="PostavHaYchet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DiplomModelContainer" CdmEntityContainer="DiplomEntities">
+          <EntitySetMapping Name="Cklad">
+            <EntityTypeMapping TypeName="DiplomModel.Cklad">
+              <MappingFragment StoreEntitySet="Cklad">
+                <ScalarProperty Name="IdCklad" ColumnName="IdCklad" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cpisanie">
+            <EntityTypeMapping TypeName="DiplomModel.Cpisanie">
+              <MappingFragment StoreEntitySet="Cpisanie">
+                <ScalarProperty Name="IdCpisanie" ColumnName="IdCpisanie" />
+                <ScalarProperty Name="IdCtelag" ColumnName="IdCtelag" />
+                <ScalarProperty Name="НомерДокумента" ColumnName="НомерДокумента" />
+                <ScalarProperty Name="Количество" ColumnName="Количество" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ctelag">
+            <EntityTypeMapping TypeName="DiplomModel.Ctelag">
+              <MappingFragment StoreEntitySet="Ctelag">
+                <ScalarProperty Name="IdCtelag" ColumnName="IdCtelag" />
+                <ScalarProperty Name="IdCklad" ColumnName="IdCklad" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+                <ScalarProperty Name="НомерСтелажа" ColumnName="НомерСтелажа" />
+                <ScalarProperty Name="НомерПолки" ColumnName="НомерПолки" />
+                <ScalarProperty Name="Осталось" ColumnName="Осталось" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EdIzmer">
+            <EntityTypeMapping TypeName="DiplomModel.EdIzmer">
+              <MappingFragment StoreEntitySet="EdIzmer">
+                <ScalarProperty Name="IdEdIzamer" ColumnName="IdEdIzamer" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Material">
+            <EntityTypeMapping TypeName="DiplomModel.Material">
+              <MappingFragment StoreEntitySet="Material">
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="IdEdIzamer" ColumnName="IdEdIzamer" />
+                <ScalarProperty Name="IdTip" ColumnName="IdTip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Poctavzik">
+            <EntityTypeMapping TypeName="DiplomModel.Poctavzik">
+              <MappingFragment StoreEntitySet="Poctavzik">
+                <ScalarProperty Name="IdPoctav" ColumnName="IdPoctav" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PostavHaYchet">
+            <EntityTypeMapping TypeName="DiplomModel.PostavHaYchet">
+              <MappingFragment StoreEntitySet="PostavHaYchet">
+                <ScalarProperty Name="IdPostHaYchet" ColumnName="IdPostHaYchet" />
+                <ScalarProperty Name="Дата" ColumnName="Дата" />
+                <ScalarProperty Name="НомерДокумента" ColumnName="НомерДокумента" />
+                <ScalarProperty Name="IdPoctav" ColumnName="IdPoctav" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+                <ScalarProperty Name="Цена" ColumnName="Цена" />
+                <ScalarProperty Name="Количество" ColumnName="Количество" />
+                <ScalarProperty Name="IdCtelag" ColumnName="IdCtelag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tip">
+            <EntityTypeMapping TypeName="DiplomModel.Tip">
+              <MappingFragment StoreEntitySet="Tip">
+                <ScalarProperty Name="IdTip" ColumnName="IdTip" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="PoctavYchet" TypeName="DiplomModel.PoctavYchet" StoreEntitySet="PoctavYchet">
+            <EndProperty Name="Poctavzik">
+              <ScalarProperty Name="IdPoctav" ColumnName="IdPoctav" />
+            </EndProperty>
+            <EndProperty Name="PostavHaYchet">
+              <ScalarProperty Name="IdPostHaYchet" ColumnName="IdPostHaYchet" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

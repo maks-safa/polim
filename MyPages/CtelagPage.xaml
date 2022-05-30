@@ -1,0 +1,59 @@
+﻿<Page x:Class="Polimer.MyPages.CtelagPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Polimer.MyPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CtelagPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+
+            <RowDefinition/>
+            <RowDefinition Height="75"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="5">
+            <TextBlock Text="Поиск " Style="{StaticResource ModernTextBlock}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBox x:Name="TBSearch" Width="250"
+                     Height="40"
+                     VerticalContentAlignment="Center"
+                     HorizontalAlignment="Left"
+                     Margin="5"
+                     Grid.Column="1"
+                     TextChanged="TBSearch_TextChanged"/>
+        </StackPanel>
+
+        <ListView Grid.Row="1" x:Name="LV" Background="Transparent" ScrollViewer.VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Center" BorderThickness="0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="10" HorizontalAlignment="Center" Width="430">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+
+                        <StackPanel  VerticalAlignment="Top" HorizontalAlignment="Stretch">
+
+                            <TextBlock Text="{Binding Material.Наименование, StringFormat={}Наименование материала: {0}}" Style="{StaticResource ModernTextBlock}" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding НомерСтелажа, StringFormat={}Номер стеллажа: {0}}" Style="{StaticResource ModernTextBlock}" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding НомерПолки, StringFormat={}Номер полки: {0}}" Style="{StaticResource ModernTextBlock}" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding Осталось, StringFormat={}Осталось: {0}}" Style="{StaticResource ModernTextBlock}" TextWrapping="Wrap"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal">
+                            <Button x:Name="BRed" Foreground="White" FontSize="20" Content="Редактировать" Click="BRed_Click" Style="{StaticResource ModernButton}" />
+
+                            <Button x:Name="BYdal" Foreground="White" FontSize="20" Content="Удалить" Click="BYdal_Click" Style="{StaticResource ModernButton}" />
+
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Grid.Row="2" x:Name="BDobav" Foreground="White" FontSize="20" Content="Добавить" Click="BDobav_Click" Style="{StaticResource ModernButton}" />
+    </Grid>
+</Page>

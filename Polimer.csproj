@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{725F2B74-C225-48C1-ACCF-6DC82FAD9E90}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Polimer</RootNamespace>
+    <AssemblyName>Polimer</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="MyPages\AddRedacCkladPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyPages\AddRedacCtelagPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyPages\AddRedacEdiniIzmerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyPages\AddRedacMaterialPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyPages\AddRedacPoctavzikPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyPages\AddRedacPostavHaYchetPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyPages\AddRedacTipPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyPages\CkladPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyPages\CpravochPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyPages\CtelagPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyPages\EdinIzmerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyPages\MaterialPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyPages\PostavHaYchetPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyPages\PostavzikPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyPages\TipPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyTheme\ThemDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Model\Cklad.cs">
+      <DependentUpon>ModelPolim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Cpisanie.cs">
+      <DependentUpon>ModelPolim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Ctelag.cs">
+      <DependentUpon>ModelPolim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\EdIzmer.cs">
+      <DependentUpon>ModelPolim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Material.cs">
+      <DependentUpon>ModelPolim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ModelPolim.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelPolim.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ModelPolim.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelPolim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ModelPolim.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelPolim.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Poctavzik.cs">
+      <DependentUpon>ModelPolim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PostavHaYchet.cs">
+      <DependentUpon>ModelPolim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Tip.cs">
+      <DependentUpon>ModelPolim.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MyClass\ConnectBD.cs" />
+    <Compile Include="MyClass\Manager.cs" />
+    <Compile Include="MyPages\AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyPages\AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyPages\AddRedacCkladPage.xaml.cs">
+      <DependentUpon>AddRedacCkladPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyPages\AddRedacCtelagPage.xaml.cs">
+      <DependentUpon>AddRedacCtelagPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyPages\AddRedacEdiniIzmerPage.xaml.cs">
+      <DependentUpon>AddRedacEdiniIzmerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyPages\AddRedacMaterialPage.xaml.cs">
+      <DependentUpon>AddRedacMaterialPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyPages\AddRedacPoctavzikPage.xaml.cs">
+      <DependentUpon>AddRedacPoctavzikPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyPages\AddRedacPostavHaYchetPage.xaml.cs">
+      <DependentUpon>AddRedacPostavHaYchetPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyPages\AddRedacTipPage.xaml.cs">
+      <DependentUpon>AddRedacTipPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyPages\CkladPage.xaml.cs">
+      <DependentUpon>CkladPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyPages\CpravochPage.xaml.cs">
+      <DependentUpon>CpravochPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyPages\CtelagPage.xaml.cs">
+      <DependentUpon>CtelagPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyPages\EdinIzmerPage.xaml.cs">
+      <DependentUpon>EdinIzmerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyPages\MaterialPage.xaml.cs">
+      <DependentUpon>MaterialPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyPages\PostavHaYchetPage.xaml.cs">
+      <DependentUpon>PostavHaYchetPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyPages\PostavzikPage.xaml.cs">
+      <DependentUpon>PostavzikPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyPages\TipPage.xaml.cs">
+      <DependentUpon>TipPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="MyPages\AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EntityDeploy Include="Model\ModelPolim.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelPolim.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\ModelPolim.edmx.diagram">
+      <DependentUpon>ModelPolim.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\1486564399-close_81512.ico" />
+    <Resource Include="Resources\dash_circle_icon_185093.ico" />
+    <Resource Include="Resources\expand-square_icon-icons.com_55591.ico" />
+    <Resource Include="Resources\znachock.jpg" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Model\ModelPolim.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelPolim.Context.cs</LastGenOutput>
+      <DependentUpon>ModelPolim.edmx</DependentUpon>
+    </Content>
+    <Content Include="Model\ModelPolim.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelPolim.edmx</DependentUpon>
+      <LastGenOutput>ModelPolim.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

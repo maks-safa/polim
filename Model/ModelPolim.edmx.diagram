@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7aaf466adc214ee1b3baa25dbe2531ee" Name="Diagram1">
+        <EntityTypeShape EntityType="DiplomModel.Cklad" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomModel.Cpisanie" Width="1.5" PointX="7.5" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomModel.Ctelag" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomModel.EdIzmer" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomModel.Material" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomModel.Poctavzik" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomModel.PostavHaYchet" Width="1.5" PointX="10.5" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomModel.Tip" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="DiplomModel.FK_Ctelag_Cklad" ManuallyRouted="false" />
+        <AssociationConnector Association="DiplomModel.FK_Cpisanie_Ctelag" ManuallyRouted="false" />
+        <AssociationConnector Association="DiplomModel.FK_Ctelag_Material" ManuallyRouted="false" />
+        <AssociationConnector Association="DiplomModel.FK_PostavHaYchet_Ctelag" ManuallyRouted="false" />
+        <AssociationConnector Association="DiplomModel.FK_Material_EdIzmer" ManuallyRouted="false" />
+        <AssociationConnector Association="DiplomModel.FK_Material_Tip" ManuallyRouted="false" />
+        <AssociationConnector Association="DiplomModel.FK_PostavHaYchet_Material" ManuallyRouted="false" />
+        <AssociationConnector Association="DiplomModel.PoctavYchet" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
