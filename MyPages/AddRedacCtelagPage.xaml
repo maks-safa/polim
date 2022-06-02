@@ -30,13 +30,13 @@
         <ComboBox x:Name="CBMaterial" DisplayMemberPath="Наименование" SelectedIndex="{Binding IdMaterial}" Grid.Column="1" Grid.Row="1" Margin="10" HorizontalAlignment="Left" Style="{StaticResource ComboBoxTheme}"/>
 
         <TextBlock Grid.Row="2" Text="Номер стеллажа" Margin="10"  HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource ModernTextBlock}"/>
-        <ComboBox x:Name="CBNomerCtellag" DisplayMemberPath="Наименование" SelectedIndex="{Binding НомерСтелажа}" Grid.Column="1" Grid.Row="2" Margin="10" HorizontalAlignment="Left" Style="{StaticResource ComboBoxTheme}"/>
+        <ComboBox x:Name="CBNomerCtellag" Grid.Column="1" Grid.Row="2" Margin="10" HorizontalAlignment="Left" Style="{StaticResource ComboBoxTheme}"/>
 
         <TextBlock Grid.Row="3" Text="Номер полки" Margin="10"  HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource ModernTextBlock}"/>
-        <ComboBox x:Name="CBNomerPolki" DisplayMemberPath="Наименование" SelectedIndex="{Binding НомерПолки}" Grid.Column="1" Grid.Row="3" Margin="10" HorizontalAlignment="Left" Style="{StaticResource ComboBoxTheme}"/>
+        <ComboBox x:Name="CBNomerPolki" Grid.Column="1" Grid.Row="3" Margin="10" HorizontalAlignment="Left" Style="{StaticResource ComboBoxTheme}"/>
 
         <TextBlock Grid.Row="4" Text="Осталось" Margin="10"  HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource ModernTextBlock}"/>
-        <TextBox x:Name="TBOctal" IsReadOnly="True" Grid.Column="1" Grid.Row="4" Margin="10" HorizontalAlignment="Left" Style="{StaticResource ModernTextbox}"/>
+        <TextBox x:Name="TBOctal" IsReadOnly="True" Text="{Binding  Осталось}" Grid.Column="1" Grid.Row="4" Margin="10" HorizontalAlignment="Left" Style="{StaticResource ModernTextbox}"/>
 
         <Button x:Name="BSave" Foreground="White" Content="Сохранить" Style="{StaticResource ModernButton}" Grid.Row="5" Grid.ColumnSpan="2" Click="BSave_Click"/>
 

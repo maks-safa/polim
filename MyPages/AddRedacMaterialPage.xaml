@@ -30,7 +30,7 @@
         <TextBlock Grid.Row="2" Text="Наименование типа" Margin="10"  HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource ModernTextBlock}"/>
         <ComboBox x:Name="CBTip" DisplayMemberPath="Наименование" SelectedIndex="{Binding IdTip}" Grid.Column="1" Grid.Row="2" Margin="10" HorizontalAlignment="Left" Style="{StaticResource ComboBoxTheme}"/>
 
-        <Button x:Name="BSave" Foreground="White" Content="Сохранить" Style="{StaticResource ModernButton}" Grid.Row="4" Grid.ColumnSpan="2" Click="BSave_Click"/>
+        <Button x:Name="BSave" Foreground="White" Content="Сохранить" Style="{StaticResource ModernButton}" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Click="BSave_Click"/>
 
     </Grid>
 </Page>

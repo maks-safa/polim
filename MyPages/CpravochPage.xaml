@@ -19,7 +19,7 @@
             <StackPanel>
                 <Button x:Name="BPostav" Content="Поставщик" Style="{StaticResource ModernButton}" Click="BPostav_Click"/>
                 <Button x:Name="BCklad" Content="Склад" Style="{StaticResource ModernButton}" Click="BCklad_Click"/>
-                <Button x:Name="BCtelag" Content="Стелаж" Style="{StaticResource ModernButton}" Click="BCtelag_Click"/>
+                <Button x:Name="BCtelag" Content="Стеллаж" Style="{StaticResource ModernButton}" Click="BCtelag_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>

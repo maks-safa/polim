@@ -35,15 +35,16 @@ namespace Polimer.MyPages
             var listMaterial = ConnectBD.polimerEntities.Material.ToList();
     
 
-            List nomerCtellag = new List();
-            List nomerPolki = new List();
-            for (int i=1; i<16; i++)
+            List<int> nomerCtellag = new List<int>();
+            List<int> nomerPolki = new List<int>();
+            
+            for (int i = 1; i < 9; i++)
             {
-                nomerCtellag.ListItems.Add(new ListItem(new Paragraph(new Run(i.ToString()))));
+                nomerCtellag.Add(i);
             }
-            for (int i = 1; i < 8; i++)
+            for (int i = 1; i < 13; i++)
             {
-                nomerPolki.ListItems.Add(new ListItem(new Paragraph(new Run(i.ToString()))));
+                nomerPolki.Add(i);
             }
             listCklad.Insert(0, new Model.Cklad
             {
@@ -54,6 +55,7 @@ namespace Polimer.MyPages
                 Наименование = "Отсутствует"
             });
 
+            
 
             CBCkald.ItemsSource = listCklad;
             CBCkald.SelectedIndex = 0;
@@ -61,11 +63,21 @@ namespace Polimer.MyPages
             CBMaterial.ItemsSource = listMaterial;
             CBMaterial.SelectedIndex = 0;
 
-            //CBNomerCtellag.ItemsSource = (System.Collections.IEnumerable)nomerCtellag;
-            //CBNomerCtellag.SelectedIndex = 0;
+            CBNomerCtellag.ItemsSource = nomerCtellag;
+            CBNomerCtellag.SelectedIndex = 0;
 
-            //CBNomerPolki.ItemsSource = (System.Collections.IEnumerable)nomerPolki;
-            //CBNomerPolki.SelectedIndex = 0;
+            if (selectedCtelag != null)
+            {
+                CBNomerCtellag.SelectedIndex = Convert.ToInt32( selectedCtelag.НомерСтелажа)-1;
+            }
+            
+            CBNomerPolki.ItemsSource = nomerPolki;
+            CBNomerPolki.SelectedIndex = 0;
+
+            if (selectedCtelag != null)
+            {
+                CBNomerPolki.SelectedIndex = Convert.ToInt32(selectedCtelag.НомерПолки)-1;
+            }
 
             DataContext = _currentCtelag;
         }

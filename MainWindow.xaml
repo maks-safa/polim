@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Polimer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1500"
+        Title="Главное окно" Height="800" Width="1500"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
@@ -72,7 +72,7 @@
             </Border>
             <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Margin="10">
                 <Image Source="Resources/znachock.jpg"/>
-                <TextBlock Text="Полимермаш"
+                <TextBlock Text="АО Полимермаш"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Left"
                    Foreground="White"
@@ -112,8 +112,15 @@
                              Style="{StaticResource MenuButtonTheme}"
                              Click="RBProgramme_Click"
                              />
-                
 
+                <RadioButton x:Name="RBCpravka" 
+                             Content="Справка"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Click="RBProgramme_Click"
+                             />
 
             </StackPanel>
 
