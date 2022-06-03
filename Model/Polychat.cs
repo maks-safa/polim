@@ -12,16 +12,18 @@ namespace Polimer.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Cpisanie
+    public partial class Polychat
     {
-        public int IdCpisanie { get; set; }
-        public int IdCtelag { get; set; }
-        public int НомерДокумента { get; set; }
-        public System.DateTime Дата { get; set; }
-        public decimal Количество { get; set; }
-        public int IdPolychat { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Polychat()
+        {
+            this.Cpisanie = new HashSet<Cpisanie>();
+        }
     
-        public virtual Ctelag Ctelag { get; set; }
-        public virtual Polychat Polychat { get; set; }
+        public int IdPolychat { get; set; }
+        public string Наименование { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cpisanie> Cpisanie { get; set; }
     }
 }

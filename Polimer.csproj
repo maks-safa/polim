@@ -98,6 +98,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MyPages\AddRedacPolychatPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MyPages\AddRedacPostavHaYchetPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -123,6 +127,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MyPages\MaterialPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyPages\PolychatPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -177,6 +185,9 @@
     <Compile Include="Model\Poctavzik.cs">
       <DependentUpon>ModelPolim.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Polychat.cs">
+      <DependentUpon>ModelPolim.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\PostavHaYchet.cs">
       <DependentUpon>ModelPolim.tt</DependentUpon>
     </Compile>
@@ -206,6 +217,9 @@
     <Compile Include="MyPages\AddRedacPoctavzikPage.xaml.cs">
       <DependentUpon>AddRedacPoctavzikPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MyPages\AddRedacPolychatPage.xaml.cs">
+      <DependentUpon>AddRedacPolychatPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MyPages\AddRedacPostavHaYchetPage.xaml.cs">
       <DependentUpon>AddRedacPostavHaYchetPage.xaml</DependentUpon>
     </Compile>
@@ -226,6 +240,9 @@
     </Compile>
     <Compile Include="MyPages\MaterialPage.xaml.cs">
       <DependentUpon>MaterialPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyPages\PolychatPage.xaml.cs">
+      <DependentUpon>PolychatPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MyPages\PostavHaYchetPage.xaml.cs">
       <DependentUpon>PostavHaYchetPage.xaml</DependentUpon>

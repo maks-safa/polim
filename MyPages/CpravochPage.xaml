@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Polimer.MyPages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="CpravochPage" Background="Transparent">
+      Title="Страница справочников" Background="Transparent">
 
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
@@ -20,7 +20,9 @@
                 <Button x:Name="BPostav" Content="Поставщик" Style="{StaticResource ModernButton}" Click="BPostav_Click"/>
                 <Button x:Name="BCklad" Content="Склад" Style="{StaticResource ModernButton}" Click="BCklad_Click"/>
                 <Button x:Name="BCtelag" Content="Стеллаж" Style="{StaticResource ModernButton}" Click="BCtelag_Click"/>
+                <Button x:Name="BPolych" Content="Получатель" Style="{StaticResource ModernButton}" Click="BPolych_Click"/>
             </StackPanel>
         </StackPanel>
+        
     </Grid>
 </Page>

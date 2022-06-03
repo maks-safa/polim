@@ -17,29 +17,29 @@ using Polimer.MyClass;
 namespace Polimer.MyPages
 {
     /// <summary>
-    /// Логика взаимодействия для AddRedacPoctavzikPage.xaml
+    /// Логика взаимодействия для AddRedacPolychatPage.xaml
     /// </summary>
-    public partial class AddRedacPoctavzikPage : Page
+    public partial class AddRedacPolychatPage : Page
     {
-        private Model.Poctavzik _currentPoctavzik = new Model.Poctavzik();
-        public AddRedacPoctavzikPage(Model.Poctavzik selectedPoctavzik)
+        private Model.Polychat _currentPolychat = new Model.Polychat();
+        public AddRedacPolychatPage(Model.Polychat selectedPolychat)
         {
             InitializeComponent();
             // принятие значений если они есть
-            if (selectedPoctavzik != null)
+            if (selectedPolychat != null)
             {
-                _currentPoctavzik = selectedPoctavzik;
+                _currentPolychat = selectedPolychat;
             }
 
-            DataContext = _currentPoctavzik;
+            DataContext = _currentPolychat;
         }
         private void BSave_Click(object sender, RoutedEventArgs e)
         {
             //Проверка и сохранение данных
             StringBuilder errors = new StringBuilder();
-            if (string.IsNullOrWhiteSpace(_currentPoctavzik.Наименование))
+            if (string.IsNullOrWhiteSpace(_currentPolychat.Наименование))
                 errors.AppendLine("Укажите наименование");
-            else if (_currentPoctavzik.Наименование.Length > 200)
+            else if (_currentPolychat.Наименование.Length > 200)
                 errors.AppendLine("В поле наименование введено больше 200 символов");
 
             if (errors.Length > 0)
@@ -48,8 +48,8 @@ namespace Polimer.MyPages
                 return;
             }
 
-            if (_currentPoctavzik.IdPoctav == 0)
-                ConnectBD.polimerEntities.Poctavzik.Add(_currentPoctavzik);
+            if (_currentPolychat.IdPolychat == 0)
+                ConnectBD.polimerEntities.Polychat.Add(_currentPolychat);
 
             try
             {

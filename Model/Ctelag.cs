@@ -17,8 +17,8 @@ namespace Polimer.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Ctelag()
         {
-            this.Cpisanie = new HashSet<Cpisanie>();
             this.PostavHaYchet = new HashSet<PostavHaYchet>();
+            this.Cpisanie = new HashSet<Cpisanie>();
         }
     
         public int IdCtelag { get; set; }
@@ -29,10 +29,10 @@ namespace Polimer.Model
         public decimal Осталось { get; set; }
     
         public virtual Cklad Cklad { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cpisanie> Cpisanie { get; set; }
         public virtual Material Material { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PostavHaYchet> PostavHaYchet { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cpisanie> Cpisanie { get; set; }
     }
 }

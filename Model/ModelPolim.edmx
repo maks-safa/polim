@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище DiplomModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище DiplomModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cklad">
           <Key>
             <PropertyRef Name="IdCklad" />
@@ -19,7 +19,9 @@
           <Property Name="IdCpisanie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdCtelag" Type="int" Nullable="false" />
           <Property Name="НомерДокумента" Type="int" Nullable="false" />
+          <Property Name="Дата" Type="date" Nullable="false" />
           <Property Name="Количество" Type="decimal" Precision="10" Scale="3" Nullable="false" />
+          <Property Name="IdPolychat" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Ctelag">
           <Key>
@@ -63,6 +65,13 @@
           <Property Name="IdPoctav" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Наименование" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
+        <EntityType Name="Polychat">
+          <Key>
+            <PropertyRef Name="IdPolychat" />
+          </Key>
+          <Property Name="IdPolychat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
         <EntityType Name="PostavHaYchet">
           <Key>
             <PropertyRef Name="IdPostHaYchet" />
@@ -92,6 +101,18 @@
             </Principal>
             <Dependent Role="Cpisanie">
               <PropertyRef Name="IdCtelag" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cpisanie_Polychat">
+          <End Role="Polychat" Type="Self.Polychat" Multiplicity="1" />
+          <End Role="Cpisanie" Type="Self.Cpisanie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Polychat">
+              <PropertyRef Name="IdPolychat" />
+            </Principal>
+            <Dependent Role="Cpisanie">
+              <PropertyRef Name="IdPolychat" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -199,10 +220,15 @@
           <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PoctavYchet" EntityType="Self.PoctavYchet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Poctavzik" EntityType="Self.Poctavzik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Polychat" EntityType="Self.Polychat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PostavHaYchet" EntityType="Self.PostavHaYchet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tip" EntityType="Self.Tip" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Cpisanie_Ctelag" Association="Self.FK_Cpisanie_Ctelag">
             <End Role="Ctelag" EntitySet="Ctelag" />
+            <End Role="Cpisanie" EntitySet="Cpisanie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cpisanie_Polychat" Association="Self.FK_Cpisanie_Polychat">
+            <End Role="Polychat" EntitySet="Polychat" />
             <End Role="Cpisanie" EntitySet="Cpisanie" />
           </AssociationSet>
           <AssociationSet Name="FK_Ctelag_Cklad" Association="Self.FK_Ctelag_Cklad">
@@ -238,8 +264,7 @@
             <End Role="PostavHaYchet" EntitySet="PostavHaYchet" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DiplomModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -250,16 +275,6 @@
           <Property Name="IdCklad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Наименование" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Ctelag" Relationship="Self.FK_Ctelag_Cklad" FromRole="Cklad" ToRole="Ctelag" />
-        </EntityType>
-        <EntityType Name="Cpisanie">
-          <Key>
-            <PropertyRef Name="IdCpisanie" />
-          </Key>
-          <Property Name="IdCpisanie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdCtelag" Type="Int32" Nullable="false" />
-          <Property Name="НомерДокумента" Type="Int32" Nullable="false" />
-          <Property Name="Количество" Type="Decimal" Precision="10" Scale="3" Nullable="false" />
-          <NavigationProperty Name="Ctelag" Relationship="Self.FK_Cpisanie_Ctelag" FromRole="Cpisanie" ToRole="Ctelag" />
         </EntityType>
         <EntityType Name="Ctelag">
           <Key>
@@ -272,9 +287,9 @@
           <Property Name="НомерПолки" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Осталось" Type="Decimal" Precision="10" Scale="3" Nullable="false" />
           <NavigationProperty Name="Cklad" Relationship="Self.FK_Ctelag_Cklad" FromRole="Ctelag" ToRole="Cklad" />
-          <NavigationProperty Name="Cpisanie" Relationship="Self.FK_Cpisanie_Ctelag" FromRole="Ctelag" ToRole="Cpisanie" />
           <NavigationProperty Name="Material" Relationship="Self.FK_Ctelag_Material" FromRole="Ctelag" ToRole="Material" />
           <NavigationProperty Name="PostavHaYchet" Relationship="Self.FK_PostavHaYchet_Ctelag" FromRole="Ctelag" ToRole="PostavHaYchet" />
+          <NavigationProperty Name="Cpisanie" Relationship="DiplomModel.FK_Cpisanie_Ctelag" FromRole="Ctelag" ToRole="Cpisanie" />
         </EntityType>
         <EntityType Name="EdIzmer">
           <Key>
@@ -338,18 +353,6 @@
             </Principal>
             <Dependent Role="Ctelag">
               <PropertyRef Name="IdCklad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cpisanie_Ctelag">
-          <End Role="Ctelag" Type="Self.Ctelag" Multiplicity="1" />
-          <End Role="Cpisanie" Type="Self.Cpisanie" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ctelag">
-              <PropertyRef Name="IdCtelag" />
-            </Principal>
-            <Dependent Role="Cpisanie">
-              <PropertyRef Name="IdCtelag" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -419,7 +422,6 @@
         </Association>
         <EntityContainer Name="DiplomEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cklad" EntityType="Self.Cklad" />
-          <EntitySet Name="Cpisanie" EntityType="Self.Cpisanie" />
           <EntitySet Name="Ctelag" EntityType="Self.Ctelag" />
           <EntitySet Name="EdIzmer" EntityType="Self.EdIzmer" />
           <EntitySet Name="Material" EntityType="Self.Material" />
@@ -429,10 +431,6 @@
           <AssociationSet Name="FK_Ctelag_Cklad" Association="Self.FK_Ctelag_Cklad">
             <End Role="Cklad" EntitySet="Cklad" />
             <End Role="Ctelag" EntitySet="Ctelag" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cpisanie_Ctelag" Association="Self.FK_Cpisanie_Ctelag">
-            <End Role="Ctelag" EntitySet="Ctelag" />
-            <End Role="Cpisanie" EntitySet="Cpisanie" />
           </AssociationSet>
           <AssociationSet Name="FK_Ctelag_Material" Association="Self.FK_Ctelag_Material">
             <End Role="Material" EntitySet="Material" />
@@ -458,7 +456,62 @@
             <End Role="Poctavzik" EntitySet="Poctavzik" />
             <End Role="PostavHaYchet" EntitySet="PostavHaYchet" />
           </AssociationSet>
+          <EntitySet Name="Cpisanie" EntityType="DiplomModel.Cpisanie" />
+          <EntitySet Name="Polychat" EntityType="DiplomModel.Polychat" />
+          <AssociationSet Name="FK_Cpisanie_Ctelag" Association="DiplomModel.FK_Cpisanie_Ctelag">
+            <End Role="Ctelag" EntitySet="Ctelag" />
+            <End Role="Cpisanie" EntitySet="Cpisanie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cpisanie_Polychat" Association="DiplomModel.FK_Cpisanie_Polychat">
+            <End Role="Polychat" EntitySet="Polychat" />
+            <End Role="Cpisanie" EntitySet="Cpisanie" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Cpisanie">
+          <Key>
+            <PropertyRef Name="IdCpisanie" />
+          </Key>
+          <Property Name="IdCpisanie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCtelag" Type="Int32" Nullable="false" />
+          <Property Name="НомерДокумента" Type="Int32" Nullable="false" />
+          <Property Name="Дата" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Количество" Type="Decimal" Nullable="false" Precision="10" Scale="3" />
+          <Property Name="IdPolychat" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ctelag" Relationship="DiplomModel.FK_Cpisanie_Ctelag" FromRole="Cpisanie" ToRole="Ctelag" />
+          <NavigationProperty Name="Polychat" Relationship="DiplomModel.FK_Cpisanie_Polychat" FromRole="Cpisanie" ToRole="Polychat" />
+        </EntityType>
+        <EntityType Name="Polychat">
+          <Key>
+            <PropertyRef Name="IdPolychat" />
+          </Key>
+          <Property Name="IdPolychat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cpisanie" Relationship="DiplomModel.FK_Cpisanie_Polychat" FromRole="Polychat" ToRole="Cpisanie" />
+        </EntityType>
+        <Association Name="FK_Cpisanie_Ctelag">
+          <End Type="DiplomModel.Ctelag" Role="Ctelag" Multiplicity="1" />
+          <End Type="DiplomModel.Cpisanie" Role="Cpisanie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ctelag">
+              <PropertyRef Name="IdCtelag" />
+            </Principal>
+            <Dependent Role="Cpisanie">
+              <PropertyRef Name="IdCtelag" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cpisanie_Polychat">
+          <End Type="DiplomModel.Polychat" Role="Polychat" Multiplicity="1" />
+          <End Type="DiplomModel.Cpisanie" Role="Cpisanie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Polychat">
+              <PropertyRef Name="IdPolychat" />
+            </Principal>
+            <Dependent Role="Cpisanie">
+              <PropertyRef Name="IdPolychat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -470,16 +523,6 @@
               <MappingFragment StoreEntitySet="Cklad">
                 <ScalarProperty Name="IdCklad" ColumnName="IdCklad" />
                 <ScalarProperty Name="Наименование" ColumnName="Наименование" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Cpisanie">
-            <EntityTypeMapping TypeName="DiplomModel.Cpisanie">
-              <MappingFragment StoreEntitySet="Cpisanie">
-                <ScalarProperty Name="IdCpisanie" ColumnName="IdCpisanie" />
-                <ScalarProperty Name="IdCtelag" ColumnName="IdCtelag" />
-                <ScalarProperty Name="НомерДокумента" ColumnName="НомерДокумента" />
-                <ScalarProperty Name="Количество" ColumnName="Количество" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -551,6 +594,26 @@
               <ScalarProperty Name="IdPostHaYchet" ColumnName="IdPostHaYchet" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Cpisanie">
+            <EntityTypeMapping TypeName="DiplomModel.Cpisanie">
+              <MappingFragment StoreEntitySet="Cpisanie">
+                <ScalarProperty Name="IdPolychat" ColumnName="IdPolychat" />
+                <ScalarProperty Name="Количество" ColumnName="Количество" />
+                <ScalarProperty Name="Дата" ColumnName="Дата" />
+                <ScalarProperty Name="НомерДокумента" ColumnName="НомерДокумента" />
+                <ScalarProperty Name="IdCtelag" ColumnName="IdCtelag" />
+                <ScalarProperty Name="IdCpisanie" ColumnName="IdCpisanie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Polychat">
+            <EntityTypeMapping TypeName="DiplomModel.Polychat">
+              <MappingFragment StoreEntitySet="Polychat">
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="IdPolychat" ColumnName="IdPolychat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

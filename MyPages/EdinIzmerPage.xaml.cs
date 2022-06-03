@@ -78,5 +78,10 @@ namespace Polimer.MyPages
         {
            Manager.MainFrame.Navigate(new AddRedacEdiniIzmerPage(null));
         }
+
+        private void BNazad_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new CpravochPage());
+        }
     }
 }

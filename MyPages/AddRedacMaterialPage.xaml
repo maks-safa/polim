@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Polimer.MyPages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddRedacMaterialPage">
+      Title="Страница добавления/редактирования материалов">
 
     <Grid>
         <Grid.ColumnDefinitions>

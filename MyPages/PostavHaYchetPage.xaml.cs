@@ -86,5 +86,10 @@ namespace Polimer.MyPages
         {
            Manager.MainFrame.Navigate(new AddRedacPostavHaYchetPage(null));
         }
+
+        private void BNazad_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new CpravochPage());
+        }
     }
 }

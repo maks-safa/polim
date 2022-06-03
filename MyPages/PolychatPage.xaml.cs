@@ -17,49 +17,41 @@ using Polimer.MyClass;
 namespace Polimer.MyPages
 {
     /// <summary>
-    /// Логика взаимодействия для MaterialPage.xaml
+    /// Логика взаимодействия для PolychatPage.xaml
     /// </summary>
-    public partial class MaterialPage : Page
+    public partial class PolychatPage : Page
     {
-        public MaterialPage()
+        public PolychatPage()
         {
-            InitializeComponent();
-            var CR = ConnectBD.polimerEntities.Material.ToList();
+            InitializeComponent(); var CR = ConnectBD.polimerEntities.Polychat.ToList();
 
             LV.ItemsSource = CR;
         }
         private void BRed_Click(object sender, RoutedEventArgs e)
         {
-           Manager.MainFrame.Navigate(new AddRedacMaterialPage((sender as Button).DataContext as Model.Material));
+            Manager.MainFrame.Navigate(new AddRedacPolychatPage((sender as Button).DataContext as Model.Polychat));
         }
 
         private void BYdal_Click(object sender, RoutedEventArgs e)
         {
             //// удаление из БД данных
-            //var Del = (sender as Button).DataContext as Model.Material;
-            //var Ho = ConnectBD.polimerEntities.CpicokZakaz.ToList();
-            //var Ho2 = ConnectBD.polimerEntities.Zakaz.ToList();
+            //var Del = (sender as Button).DataContext as Model.Polychat;
+            //var Ho = ConnectBD.polimerEntities.Material.ToList();
 
-            //if (MessageBox.Show($"Вы точно хотите удалить. Все связанные заказы с этим материалом будут удалены", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            //if (MessageBox.Show($"Вы точно хотите удалить. Все связанные материалы с этой единицей измерения будут удалены", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             //{
             //    try
             //    {
-            //        ConnectBD.polimerEntities.Material.Remove(Del);
-            //        if (Ho.Find(p => p.IdMaterial == Del.IdMaterial) != null)
+            //        ConnectBD.polimerEntities.Polychat.Remove(Del);
+            //        if (Ho.Find(p => p.Polychat == Del.IdEdIzamer) != null)
             //        {
-            //            var delCpiZak = Ho.Where(p => p.IdMaterial == Del.IdMaterial);
-            //            ConnectBD.polimerEntities.CpicokZakaz.RemoveRange(delCpiZak);
-
-            //            var cpiDelZakaz = Ho.Find(p => p.IdMaterial == Del.IdMaterial);
-            //            var delZakaz = Ho2.Where(p => p.IdZakaz == cpiDelZakaz.IdZakaz);
-            //            ConnectBD.polimerEntities.Zakaz.RemoveRange(delZakaz);
+            //            var asd = Ho.Where(p => p.Polychat == Del.Polychat);
+            //            ConnectBD.polimerEntities.Polychat.RemoveRange(asd);
             //        }
-
-
             //        ConnectBD.polimerEntities.SaveChanges();
             //        MessageBox.Show("Данные удалены!");
 
-            //        var CR = ConnectBD.polimerEntities.Material.ToList();
+            //        var CR = ConnectBD.polimerEntities.Polychat.ToList();
             //        LV.ItemsSource = CR;
             //    }
             //    catch (Exception ex)
@@ -71,7 +63,7 @@ namespace Polimer.MyPages
 
         private void Update()
         {
-            var CR = ConnectBD.polimerEntities.Material.ToList();
+            var CR = ConnectBD.polimerEntities.Polychat.ToList();
             CR = CR.Where(p => p.Наименование.ToLower().Contains(TBSearch.Text.ToLower())).ToList();
 
             LV.ItemsSource = CR;
@@ -81,10 +73,9 @@ namespace Polimer.MyPages
             Update();
         }
 
-   
         private void BDobav_Click(object sender, RoutedEventArgs e)
         {
-           Manager.MainFrame.Navigate(new AddRedacMaterialPage(null));
+            Manager.MainFrame.Navigate(new AddRedacPolychatPage(null));
         }
 
         private void BNazad_Click(object sender, RoutedEventArgs e)

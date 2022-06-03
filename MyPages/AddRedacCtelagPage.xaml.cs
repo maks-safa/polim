@@ -55,8 +55,7 @@ namespace Polimer.MyPages
                 Наименование = "Отсутствует"
             });
 
-            
-
+            // Передача ComboBox данных
             CBCkald.ItemsSource = listCklad;
             CBCkald.SelectedIndex = 0;
 
@@ -66,6 +65,7 @@ namespace Polimer.MyPages
             CBNomerCtellag.ItemsSource = nomerCtellag;
             CBNomerCtellag.SelectedIndex = 0;
 
+            // принятие значений если они есть
             if (selectedCtelag != null)
             {
                 CBNomerCtellag.SelectedIndex = Convert.ToInt32( selectedCtelag.НомерСтелажа)-1;
@@ -74,6 +74,7 @@ namespace Polimer.MyPages
             CBNomerPolki.ItemsSource = nomerPolki;
             CBNomerPolki.SelectedIndex = 0;
 
+            // принятие значений если они есть
             if (selectedCtelag != null)
             {
                 CBNomerPolki.SelectedIndex = Convert.ToInt32(selectedCtelag.НомерПолки)-1;
@@ -85,11 +86,26 @@ namespace Polimer.MyPages
         {
             //Проверка и сохранение данных
             StringBuilder errors = new StringBuilder();
-            //if (string.IsNullOrWhiteSpace(_currentCtelag.Наименование))
-            //    errors.AppendLine("Укажите наименование");
-            //else if (_currentCtelag.Наименование.Length > 100)
-            //    errors.AppendLine("В поле наименование введено больше 100 символов");
-
+            var s = _currentCtelag;
+            if (CBCkald.SelectedIndex == 0)
+            {
+                errors.AppendLine("Не выбран склад");
+            }
+            if (CBMaterial.SelectedIndex == 0)
+            {
+                errors.AppendLine("Не выбран материал");
+            }
+            
+            if(ConnectBD.polimerEntities.Ctelag.Where(p => p.НомерПолки == CBNomerPolki.Text &&
+            p.НомерСтелажа == CBNomerCtellag.Text && p.IdMaterial == _currentCtelag.IdMaterial && p.Осталось == _currentCtelag.Осталось).Count() == 1)
+            {
+                
+            }
+            else if(ConnectBD.polimerEntities.Ctelag.Where(p => p.НомерПолки == CBNomerPolki.Text &&
+            p.НомерСтелажа == CBNomerCtellag.Text && p.Осталось != -1).Count() > 0)
+            {
+                errors.AppendLine("Место занято");
+            }
 
             if (errors.Length > 0)
             {

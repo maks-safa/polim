@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Polimer.MyPages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddRedacCkladPage">
+      Title="Страница добавления/редактирования складов">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -23,7 +23,6 @@
         <TextBlock Grid.Row="0" Text="Наименование" Margin="10"  HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource ModernTextBlock}"/>
         <TextBox x:Name="TBNaimen"  Text="{Binding  Наименование}" Grid.Column="1" Grid.Row="0" Margin="10" HorizontalAlignment="Left" Style="{StaticResource ModernTextbox}"/>
 
-        
         <Button x:Name="BSave" Foreground="White" Content="Сохранить" Style="{StaticResource ModernButton}" Grid.Row="3" Grid.ColumnSpan="2" Click="BSave_Click"/>
 
     </Grid>

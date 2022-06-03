@@ -1,4 +1,4 @@
-﻿<Page x:Class="Polimer.MyPages.EdinIzmerPage"
+﻿<Page x:Class="Polimer.MyPages.PolychatPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Polimer.MyPages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Страница единиц измерения">
+      Title="Страница получателей">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -39,7 +39,7 @@
 
                         <StackPanel  VerticalAlignment="Top" HorizontalAlignment="Stretch">
 
-                            <TextBlock Text="{Binding Наименование, StringFormat={}Единица измерения: {0}}" Style="{StaticResource ModernTextBlock}" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding Наименование, StringFormat={}Наименование: {0}}" Style="{StaticResource ModernTextBlock}" TextWrapping="Wrap"/>
                         </StackPanel>
                         <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal">
                             <Button x:Name="BRed" Foreground="White" FontSize="20" Content="Редактировать" Click="BRed_Click" Style="{StaticResource ModernButton}" />

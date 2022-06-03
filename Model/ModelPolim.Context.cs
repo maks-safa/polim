@@ -26,12 +26,13 @@ namespace Polimer.Model
         }
     
         public virtual DbSet<Cklad> Cklad { get; set; }
-        public virtual DbSet<Cpisanie> Cpisanie { get; set; }
         public virtual DbSet<Ctelag> Ctelag { get; set; }
         public virtual DbSet<EdIzmer> EdIzmer { get; set; }
         public virtual DbSet<Material> Material { get; set; }
         public virtual DbSet<Poctavzik> Poctavzik { get; set; }
         public virtual DbSet<PostavHaYchet> PostavHaYchet { get; set; }
         public virtual DbSet<Tip> Tip { get; set; }
+        public virtual DbSet<Cpisanie> Cpisanie { get; set; }
+        public virtual DbSet<Polychat> Polychat { get; set; }
     }
 }

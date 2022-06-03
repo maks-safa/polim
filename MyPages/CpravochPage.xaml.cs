@@ -55,5 +55,11 @@ namespace Polimer.MyPages
         {
             Manager.MainFrame.Navigate(new CtelagPage());
         }
+
+        private void BPolych_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new PolychatPage());
+        }
+
     }
 }

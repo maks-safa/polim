@@ -56,8 +56,8 @@ namespace Polimer.MyPages
             StringBuilder errors = new StringBuilder();
             if (string.IsNullOrWhiteSpace(_currentCurrentMaterial.Наименование))
                 errors.AppendLine("Укажите наименование");
-            else if (_currentCurrentMaterial.Наименование.Length > 50)
-                errors.AppendLine("В поле наименование введено больше 50 символов");
+            else if (_currentCurrentMaterial.Наименование.Length > 4000)
+                errors.AppendLine("В поле наименование введено больше 4000 символов");
             if (CBEdIZmer.SelectedIndex == 0)
             {
                 errors.AppendLine("Не выбрана единица измерения");
