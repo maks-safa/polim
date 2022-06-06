@@ -82,6 +82,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MyPages\AddRedacCpicaniePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MyPages\AddRedacCtelagPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -114,6 +118,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MyPages\CpisaniePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MyPages\CpravochPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -143,6 +151,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MyPages\TipPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyPages\YchetPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -205,6 +217,9 @@
     <Compile Include="MyPages\AddRedacCkladPage.xaml.cs">
       <DependentUpon>AddRedacCkladPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MyPages\AddRedacCpicaniePage.xaml.cs">
+      <DependentUpon>AddRedacCpicaniePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MyPages\AddRedacCtelagPage.xaml.cs">
       <DependentUpon>AddRedacCtelagPage.xaml</DependentUpon>
     </Compile>
@@ -229,6 +244,9 @@
     <Compile Include="MyPages\CkladPage.xaml.cs">
       <DependentUpon>CkladPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MyPages\CpisaniePage.xaml.cs">
+      <DependentUpon>CpisaniePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MyPages\CpravochPage.xaml.cs">
       <DependentUpon>CpravochPage.xaml</DependentUpon>
     </Compile>
@@ -252,6 +270,9 @@
     </Compile>
     <Compile Include="MyPages\TipPage.xaml.cs">
       <DependentUpon>TipPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyPages\YchetPage.xaml.cs">
+      <DependentUpon>YchetPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -295,7 +316,35 @@
     <Resource Include="Resources\expand-square_icon-icons.com_55591.ico" />
     <Resource Include="Resources\znachock.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Model\ModelPolim.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -307,6 +356,7 @@
       <DependentUpon>ModelPolim.edmx</DependentUpon>
       <LastGenOutput>ModelPolim.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\znachock.ico" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

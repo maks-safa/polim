@@ -20,8 +20,10 @@ namespace Polimer.Model
         public System.DateTime Дата { get; set; }
         public decimal Количество { get; set; }
         public int IdPolychat { get; set; }
+        public int IdMaterial { get; set; }
     
         public virtual Ctelag Ctelag { get; set; }
+        public virtual Material Material { get; set; }
         public virtual Polychat Polychat { get; set; }
     }
 }

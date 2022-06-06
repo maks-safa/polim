@@ -9,20 +9,22 @@
       Title="Страница справочников" Background="Transparent">
 
     <Grid>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-            <StackPanel>
-                <Button x:Name="BMaterial" Content="Материалы" Style="{StaticResource ModernButton}" Click="BMaterial_Click"/>
-                <Button x:Name="BTip" Content="Тип" Style="{StaticResource ModernButton}" Click="BTip_Click"/>
-                <Button x:Name="BEdIzmer" Content="Единицы измерения" Style="{StaticResource ModernButton}" Click="BEdIzmer_Click"/>
-                
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel  Orientation="Horizontal">
+                <StackPanel>
+                    <Button x:Name="BMaterial" Content="Материалы" Style="{StaticResource ModernButton}" Click="BMaterial_Click"/>
+                    <Button x:Name="BTip" Content="Тип" Style="{StaticResource ModernButton}" Click="BTip_Click"/>
+                    <Button x:Name="BEdIzmer" Content="Единицы измерения" Style="{StaticResource ModernButton}" Click="BEdIzmer_Click"/>
+
+                </StackPanel>
+                <StackPanel>
+                    <Button x:Name="BPostav" Content="Поставщик" Style="{StaticResource ModernButton}" Click="BPostav_Click"/>
+                    <Button x:Name="BCklad" Content="Склад" Style="{StaticResource ModernButton}" Click="BCklad_Click"/>
+                    <Button x:Name="BCtelag" Content="Стеллаж" Style="{StaticResource ModernButton}" Click="BCtelag_Click"/>
+
+                </StackPanel>
             </StackPanel>
-            <StackPanel>
-                <Button x:Name="BPostav" Content="Поставщик" Style="{StaticResource ModernButton}" Click="BPostav_Click"/>
-                <Button x:Name="BCklad" Content="Склад" Style="{StaticResource ModernButton}" Click="BCklad_Click"/>
-                <Button x:Name="BCtelag" Content="Стеллаж" Style="{StaticResource ModernButton}" Click="BCtelag_Click"/>
-                <Button x:Name="BPolych" Content="Получатель" Style="{StaticResource ModernButton}" Click="BPolych_Click"/>
-            </StackPanel>
+            <Button x:Name="BPolych" Content="Получатель" Style="{StaticResource ModernButton}" Click="BPolych_Click"/>
         </StackPanel>
-        
     </Grid>
 </Page>

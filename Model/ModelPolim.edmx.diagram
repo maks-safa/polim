@@ -19,11 +19,12 @@
         <AssociationConnector Association="DiplomModel.FK_Material_Tip" ManuallyRouted="false" />
         <AssociationConnector Association="DiplomModel.FK_PostavHaYchet_Material" ManuallyRouted="false" />
         <AssociationConnector Association="DiplomModel.PoctavYchet" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="DiplomModel.Cpisanie" Width="1.5" PointX="7.5" PointY="4.25" />
         <EntityTypeShape EntityType="DiplomModel.Polychat" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="DiplomModel.Cpisanie" Width="1.5" PointX="7.5" PointY="3.875" />
         <AssociationConnector Association="DiplomModel.FK_Cpisanie_Ctelag" />
+        <AssociationConnector Association="DiplomModel.FK_Cpisanie_Material" />
         <AssociationConnector Association="DiplomModel.FK_Cpisanie_Polychat" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

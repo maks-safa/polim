@@ -21,8 +21,9 @@
 
         <TextBlock Grid.Row="0" Text="Наименование" Margin="10"  HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource ModernTextBlock}"/>
         <TextBox x:Name="TBNaimen"  Text="{Binding  Наименование}" Grid.Column="1" Grid.Row="0" Margin="10" HorizontalAlignment="Left" Style="{StaticResource ModernTextbox}"/>
-
-        <Button x:Name="BSave" Foreground="White" Content="Сохранить" Style="{StaticResource ModernButton}" Grid.Row="4" Grid.ColumnSpan="2" Click="BSave_Click"/>
-
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <Button x:Name="BSave" Foreground="White" Content="Сохранить" Style="{StaticResource ModernButton}" Click="BSave_Click"/>
+            <Button x:Name="BNazad" Foreground="White" Content="Назад" Style="{StaticResource ModernButton}" Click="BNazad_Click"/>
+        </StackPanel>
     </Grid>
 </Page>

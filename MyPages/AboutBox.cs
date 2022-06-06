@@ -15,11 +15,11 @@ namespace Polimer.MyPages
         {
             InitializeComponent();
             this.Text = String.Format("О программе {0}", "складской учет");
-            this.labelProductName.Text = AssemblyProduct;
+            this.labelProductName.Text = "Складской учет";
             this.labelVersion.Text = String.Format("Версия {0}", AssemblyVersion);
-            this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = AssemblyCompany;
-            this.textBoxDescription.Text = AssemblyDescription;
+            this.labelCopyright.Text = "Студент группы П-41 Чугунов Максим";
+            this.labelCompanyName.Text = "АО Полимермаш";
+            this.textBoxDescription.Text = "Система автоматизации складского учета на АО «Боровичский завод «По-лимермаш»";
         }
 
         #region Методы доступа к атрибутам сборки

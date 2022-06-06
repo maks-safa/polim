@@ -1,12 +1,12 @@
-﻿<Page x:Class="Polimer.MyPages.PostavHaYchetPage"
+﻿<Page x:Class="Polimer.MyPages.CpisaniePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Polimer.MyPages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Страница поставки на учет">
+      d:DesignHeight="450" d:DesignWidth="850"
+      Title="Страница списаний">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -24,6 +24,7 @@
                         <TextBlock Text="Поиск по" Style="{StaticResource ModernTextBlock}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <TextBlock Text="номеру докуметна " Style="{StaticResource ModernTextBlock}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </StackPanel>
+                    
                     <TextBox x:Name="TBSearch" Width="255"
                          Height="40"
                          VerticalContentAlignment="Center"
@@ -33,8 +34,8 @@
                          TextChanged="TBSearch_TextChanged"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Поставщик " Style="{StaticResource ModernTextBlock}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <ComboBox x:Name="CBPostav" DisplayMemberPath="Наименование" SelectionChanged="CBTip_SelectionChanged" Height="30" Margin="10" HorizontalAlignment="Left" Style="{StaticResource ComboBoxTheme}"/>
+                    <TextBlock Text="Получатель " Style="{StaticResource ModernTextBlock}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <ComboBox x:Name="CBPolych" DisplayMemberPath="Наименование" SelectionChanged="CBTip_SelectionChanged" Height="30" Margin="10" HorizontalAlignment="Left" Style="{StaticResource ComboBoxTheme}"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" >
@@ -61,12 +62,14 @@
 
 
                         <StackPanel  VerticalAlignment="Top" HorizontalAlignment="Stretch">
-                            <TextBlock Text="{Binding Дата, StringFormat={}Дата: {0:d}}" Style="{StaticResource ModernTextBlock}" TextWrapping="Wrap"/>
+                           
                             <TextBlock Text="{Binding НомерДокумента, StringFormat={}Номер документа: {0}}" Style="{StaticResource ModernTextBlock}" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding Дата, StringFormat={}Дата списания: {0:d}}" Style="{StaticResource ModernTextBlock}" TextWrapping="Wrap"/>
                             <TextBlock Text="{Binding Material.Наименование, StringFormat={}Наименование материала: {0}}" Style="{StaticResource ModernTextBlock}" TextWrapping="Wrap"/>
-                            <TextBlock Text="{Binding Цена, StringFormat={}Цена: {0}}" Style="{StaticResource ModernTextBlock}" TextWrapping="Wrap"/>
-                            <TextBlock Text="{Binding Количество, StringFormat={}Количество: {0}}" Style="{StaticResource ModernTextBlock}" TextWrapping="Wrap"/>
-                            
+                            <TextBlock Text="{Binding Количество, StringFormat={}Количество списания: {0}}" Style="{StaticResource ModernTextBlock}" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding Polychat.Наименование, StringFormat={}Получатель: {0}}" Style="{StaticResource ModernTextBlock}" TextWrapping="Wrap"/>
+                          
+
                         </StackPanel>
                         <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal">
                             <Button x:Name="BRed" Foreground="White" FontSize="20" Content="Редактировать" Click="BRed_Click" Style="{StaticResource ModernButton}" />

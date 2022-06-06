@@ -19,6 +19,7 @@ namespace Polimer.Model
         {
             this.Ctelag = new HashSet<Ctelag>();
             this.PostavHaYchet = new HashSet<PostavHaYchet>();
+            this.Cpisanie = new HashSet<Cpisanie>();
         }
     
         public int IdMaterial { get; set; }
@@ -32,5 +33,7 @@ namespace Polimer.Model
         public virtual Tip Tip { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PostavHaYchet> PostavHaYchet { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cpisanie> Cpisanie { get; set; }
     }
 }

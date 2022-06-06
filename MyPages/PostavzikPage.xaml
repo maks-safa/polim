@@ -39,7 +39,7 @@
 
                         <StackPanel  VerticalAlignment="Top" HorizontalAlignment="Stretch">
 
-                            <TextBlock Text="{Binding Наименование, StringFormat={}Единица измерения: {0}}" Style="{StaticResource ModernTextBlock}" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding Наименование, StringFormat={}Поставщик: {0}}" Style="{StaticResource ModernTextBlock}" TextWrapping="Wrap"/>
                         </StackPanel>
                         <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal">
                             <Button x:Name="BRed" Foreground="White" FontSize="20" Content="Редактировать" Click="BRed_Click" Style="{StaticResource ModernButton}" />

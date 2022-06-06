@@ -35,31 +35,31 @@ namespace Polimer.MyPages
 
         private void BYdal_Click(object sender, RoutedEventArgs e)
         {
-            //// удаление из БД данных
-            //var Del = (sender as Button).DataContext as Model.Poctavzik;
-            //var Ho = ConnectBD.polimerEntities.Poctavzik.ToList();
+            // удаление из БД данных
+            var Del = (sender as Button).DataContext as Model.Poctavzik;
+            var Postav = ConnectBD.polimerEntities.PostavHaYchet.ToList();
 
-            //if (MessageBox.Show($"Вы точно хотите удалить. Все связанные материалы с этой единицей измерения будут удалены", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            //{
-            //    try
-            //    {
-            //        ConnectBD.polimerEntities.Poctavzik.Remove(Del);
-            //        if (Ho.Find(p => p.IdEdIzamer == Del.IdEdIzamer) != null)
-            //        {
-            //            var asd = Ho.Where(p => p.IdEdIzamer == Del.IdEdIzamer);
-            //            ConnectBD.polimerEntities.Material.RemoveRange(asd);
-            //        }
-            //        ConnectBD.polimerEntities.SaveChanges();
-            //        MessageBox.Show("Данные удалены!");
+            if (MessageBox.Show($"Вы точно хотите удалить. Все связанные поставки на учет с этим поставщиком будут удалены", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    ConnectBD.polimerEntities.Poctavzik.Remove(Del);
+                    if (Postav.Find(p => p.IdPoctav == Del.IdPoctav) != null)
+                    {
+                        var DelPostav = Postav.Where(p => p.IdPoctav == Del.IdPoctav);
+                        ConnectBD.polimerEntities.PostavHaYchet.RemoveRange(DelPostav);
+                    }
+                    ConnectBD.polimerEntities.SaveChanges();
+                    MessageBox.Show("Данные удалены!");
 
-            //        var CR = ConnectBD.polimerEntities.EdIzmer.ToList();
-            //        LV.ItemsSource = CR;
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show(ex.Message.ToString());
-            //    }
-            //};
+                    var CR = ConnectBD.polimerEntities.Poctavzik.ToList();
+                    LV.ItemsSource = CR;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            };
         }
 
         private void Update()

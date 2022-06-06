@@ -37,17 +37,17 @@ namespace Polimer.MyPages
         {
             // удаление из БД данных
             var Del = (sender as Button).DataContext as Model.EdIzmer;
-            var Ho = ConnectBD.polimerEntities.Material.ToList();
+            var Mater = ConnectBD.polimerEntities.Material.ToList();
 
             if (MessageBox.Show($"Вы точно хотите удалить. Все связанные материалы с этой единицей измерения будут удалены", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 try
                 {
                     ConnectBD.polimerEntities.EdIzmer.Remove(Del);
-                    if (Ho.Find(p => p.IdEdIzamer == Del.IdEdIzamer) != null)
+                    if (Mater.Find(p => p.IdEdIzamer == Del.IdEdIzamer) != null)
                     {
-                        var asd = Ho.Where(p => p.IdEdIzamer == Del.IdEdIzamer);
-                        ConnectBD.polimerEntities.Material.RemoveRange(asd);
+                        var DelMater = Mater.Where(p => p.IdEdIzamer == Del.IdEdIzamer);
+                        ConnectBD.polimerEntities.Material.RemoveRange(DelMater);
                     }
                     ConnectBD.polimerEntities.SaveChanges();
                     MessageBox.Show("Данные удалены!");

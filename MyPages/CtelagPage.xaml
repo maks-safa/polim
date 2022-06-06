@@ -10,7 +10,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="100"/>
 
             <RowDefinition/>
             <RowDefinition Height="75"/>
@@ -25,6 +25,17 @@
                      Margin="5"
                      Grid.Column="1"
                      TextChanged="TBSearch_TextChanged"/>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock Text="Тип " Style="{StaticResource ModernTextBlock}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <ComboBox x:Name="CBTip" DisplayMemberPath="Наименование" SelectionChanged="CBTip_SelectionChanged" Height="30" Margin="10" HorizontalAlignment="Left" Style="{StaticResource ComboBoxTheme}"/>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Единицы измерения" Style="{StaticResource ModernTextBlock}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <ComboBox x:Name="CBEdIzmer" DisplayMemberPath="Наименование" SelectionChanged="CBTip_SelectionChanged" Height="30" Margin="10" HorizontalAlignment="Left" Style="{StaticResource ComboBoxTheme}"/>
+                </StackPanel>
+            </StackPanel>
         </StackPanel>
 
         <ListView Grid.Row="1" x:Name="LV" Background="Transparent" ScrollViewer.VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Center" BorderThickness="0">

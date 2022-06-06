@@ -76,7 +76,7 @@ namespace Polimer
 
         private void RBYchet_Click(object sender, RoutedEventArgs e)
         {
-            MyClass.Manager.MainFrame.Navigate(new MyPages.PostavHaYchetPage());
+            MyClass.Manager.MainFrame.Navigate(new MyPages.YchetPage());
 
         }
     }

@@ -37,21 +37,32 @@ namespace Polimer.MyPages
         {
             // удаление из БД данных
             var Del = (sender as Button).DataContext as Model.Cklad;
-            var Ho = ConnectBD.polimerEntities.Cklad.ToList();
+            var PostavHaYch = ConnectBD.polimerEntities.PostavHaYchet.ToList();
+            var Ctelag = ConnectBD.polimerEntities.Ctelag.ToList();
 
-            if (MessageBox.Show($"Вы точно хотите удалить. Все связанные материалы с этим складом будут удалены", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (MessageBox.Show($"Вы точно хотите удалить. Все связанные поставки на учет и стеллажи с этим складом будут удалены", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 try
                 {
                     ConnectBD.polimerEntities.Cklad.Remove(Del);
-                    var asd = Ho.Where(p => p.IdCklad == Del.IdCklad);
+                    if (Ctelag.Find(p => p.IdMaterial == Del.IdCklad) != null)
+                    {
+                        var DelCtell = Ctelag.Where(p => p.IdCklad == Del.IdCklad);
+                        ConnectBD.polimerEntities.Ctelag.RemoveRange(DelCtell);
 
-
+                        var cpiDelCtelag = Ctelag.FindAll(p => p.IdCklad == Del.IdCklad);
+                        foreach(var i in cpiDelCtelag)
+                        {
+                            var DelPostavHaYch = PostavHaYch.Where(p => p.IdCtelag == i.IdCtelag);
+                            ConnectBD.polimerEntities.PostavHaYchet.RemoveRange(DelPostavHaYch);
+                        }
+                        
+                    }
 
                     ConnectBD.polimerEntities.SaveChanges();
                     MessageBox.Show("Данные удалены!");
 
-                    var CR = ConnectBD.polimerEntities.Cklad.ToList();
+                    var CR = ConnectBD.polimerEntities.Material.ToList();
                     LV.ItemsSource = CR;
                 }
                 catch (Exception ex)

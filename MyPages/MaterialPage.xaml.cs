@@ -25,7 +25,21 @@ namespace Polimer.MyPages
         {
             InitializeComponent();
             var CR = ConnectBD.polimerEntities.Material.ToList();
+            var Tip = ConnectBD.polimerEntities.Tip.ToList();
+            var EdIzmer = ConnectBD.polimerEntities.EdIzmer.ToList();
 
+            Tip.Insert(0, new Model.Tip
+            {
+                Наименование = "Отсутствует"
+            });
+            EdIzmer.Insert(0, new Model.EdIzmer
+            {
+                Наименование = "Отсутствует"
+            });
+            CBTip.ItemsSource = Tip;
+            CBTip.SelectedIndex = 0;
+            CBEdIzmer.ItemsSource = EdIzmer;
+            CBEdIzmer.SelectedIndex = 0;
             LV.ItemsSource = CR;
         }
         private void BRed_Click(object sender, RoutedEventArgs e)
@@ -35,43 +49,59 @@ namespace Polimer.MyPages
 
         private void BYdal_Click(object sender, RoutedEventArgs e)
         {
-            //// удаление из БД данных
-            //var Del = (sender as Button).DataContext as Model.Material;
-            //var Ho = ConnectBD.polimerEntities.CpicokZakaz.ToList();
-            //var Ho2 = ConnectBD.polimerEntities.Zakaz.ToList();
+            // удаление из БД данных
+            var Del = (sender as Button).DataContext as Model.Material;
+            var PostavHaYch = ConnectBD.polimerEntities.PostavHaYchet.ToList();
+            var Ctell = ConnectBD.polimerEntities.Ctelag.ToList();
+            var Cpicanie = ConnectBD.polimerEntities.Cpisanie.ToList();
 
-            //if (MessageBox.Show($"Вы точно хотите удалить. Все связанные заказы с этим материалом будут удалены", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            //{
-            //    try
-            //    {
-            //        ConnectBD.polimerEntities.Material.Remove(Del);
-            //        if (Ho.Find(p => p.IdMaterial == Del.IdMaterial) != null)
-            //        {
-            //            var delCpiZak = Ho.Where(p => p.IdMaterial == Del.IdMaterial);
-            //            ConnectBD.polimerEntities.CpicokZakaz.RemoveRange(delCpiZak);
+            if (MessageBox.Show($"Вы точно хотите удалить. Все связанные поставки на учет, списания и стеллажи с этим материалом будут удалены", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    ConnectBD.polimerEntities.Material.Remove(Del);
+                    if (PostavHaYch.Find(p => p.IdMaterial == Del.IdMaterial) != null)
+                    {
+                        var DelPostavHaYch = PostavHaYch.Where(p => p.IdMaterial == Del.IdMaterial);
+                        ConnectBD.polimerEntities.PostavHaYchet.RemoveRange(DelPostavHaYch);
+                        var DelCtell = Ctell.Where(p => p.IdMaterial == Del.IdMaterial);
+                        ConnectBD.polimerEntities.Ctelag.RemoveRange(DelCtell);
+                        foreach(var i in DelCtell)
+                        {
+                            var DelPostavCtell = Ctell.Where(p => p.IdCtelag == i.IdCtelag);
+                            ConnectBD.polimerEntities.Ctelag.RemoveRange(DelPostavCtell);
+                        }
+                       
+                        
+                        var DelCpicanie = Cpicanie.Where(p => p.IdMaterial == Del.IdMaterial);
+                        ConnectBD.polimerEntities.Cpisanie.RemoveRange(DelCpicanie);
+                    }
 
-            //            var cpiDelZakaz = Ho.Find(p => p.IdMaterial == Del.IdMaterial);
-            //            var delZakaz = Ho2.Where(p => p.IdZakaz == cpiDelZakaz.IdZakaz);
-            //            ConnectBD.polimerEntities.Zakaz.RemoveRange(delZakaz);
-            //        }
 
+                    ConnectBD.polimerEntities.SaveChanges();
+                    MessageBox.Show("Данные удалены!");
 
-            //        ConnectBD.polimerEntities.SaveChanges();
-            //        MessageBox.Show("Данные удалены!");
-
-            //        var CR = ConnectBD.polimerEntities.Material.ToList();
-            //        LV.ItemsSource = CR;
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show(ex.Message.ToString());
-            //    }
-            //};
+                    Update();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            };
         }
 
         private void Update()
         {
             var CR = ConnectBD.polimerEntities.Material.ToList();
+
+            if (CBTip.SelectedIndex > 0)
+            {
+                CR = CR.Where(p => p.Tip.Equals(CBTip.SelectedItem as Model.Tip)).ToList();
+            }
+            if (CBEdIzmer.SelectedIndex > 0)
+            {
+                CR = CR.Where(p => p.EdIzmer.Equals(CBEdIzmer.SelectedItem as Model.EdIzmer)).ToList();
+            }
             CR = CR.Where(p => p.Наименование.ToLower().Contains(TBSearch.Text.ToLower())).ToList();
 
             LV.ItemsSource = CR;
@@ -90,6 +120,11 @@ namespace Polimer.MyPages
         private void BNazad_Click(object sender, RoutedEventArgs e)
         {
             Manager.MainFrame.Navigate(new CpravochPage());
+        }
+
+        private void CBTip_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Update();
         }
     }
 }

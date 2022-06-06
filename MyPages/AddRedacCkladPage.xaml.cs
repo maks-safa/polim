@@ -63,5 +63,10 @@ namespace Polimer.MyPages
                 MessageBox.Show(ex.Message.ToString());
             }
         }
+
+        private void BNazad_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.GoBack();
+        }
     }
 }
