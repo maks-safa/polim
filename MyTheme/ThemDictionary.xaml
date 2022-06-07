@@ -29,6 +29,34 @@
         <Setter Property="Foreground" Value="White"/>
 
     </Style>
+    <Style TargetType="{x:Type Button}"
+           x:Key="MenuButton">
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#26972D"/>
+            </Trigger>
+        </Style.Triggers>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+
+                    <Border Width="300" Height="70" CornerRadius="10" Background="{TemplateBinding Background}">
+
+                        <Grid>
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{TemplateBinding Content}"/>
+                        </Grid>
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+
+        </Setter>
+        <Setter Property="Background" Value="#26972D"/>
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="Foreground" Value="White"/>
+
+    </Style>
     <Style x:Key="ComboBoxTheme" TargetType="ComboBox">
         <Setter Property="Width" Value="200"/>
         <Setter Property="Height" Value="40"/>
@@ -71,7 +99,7 @@
     </Style>
     <Style TargetType="{x:Type TextBlock}" x:Key="ModernTextBlock">
         <Setter Property="Foreground" Value="White"/>
-        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontSize" Value="24"/>
 
     </Style>
     <Style TargetType="{x:Type TextBox}"
@@ -99,7 +127,7 @@
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Left"
                                        Margin="10,0,0,0"
-                                       FontSize="11"
+                                       FontSize="12"
                                        Foreground="DarkGray"
                                        Grid.Column="1">
 

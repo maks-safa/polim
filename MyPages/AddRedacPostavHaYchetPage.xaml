@@ -60,10 +60,10 @@
                 <ComboBox x:Name="CBMaterial" DisplayMemberPath="Наименование" SelectedIndex="{Binding IdMaterial}" SelectionChanged="CBMaterial_SelectionChanged" Grid.Column="1" Grid.Row="3" Margin="10" HorizontalAlignment="Left" Style="{StaticResource ComboBoxTheme}"/>
 
                 <TextBlock Grid.Row="4" Text="Цена" Margin="10"  HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource ModernTextBlock}"/>
-                <TextBox x:Name="TBCena" Text="{Binding  Цена}" PreviewTextInput="TBKoliches_PreviewTextInput" MaxLength="10" Grid.Column="1" Grid.Row="4" Margin="10" HorizontalAlignment="Left" Style="{StaticResource ModernTextbox}"/>
+                <TextBox x:Name="TBCena" Text="{Binding  Цена}" MaxLength="10" PreviewTextInput="TBKoliches_PreviewTextInput" Grid.Column="1" Grid.Row="4" Margin="10" HorizontalAlignment="Left" Style="{StaticResource ModernTextbox}"/>
 
                 <TextBlock Grid.Row="5" Text="Количество" Margin="10"  HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource ModernTextBlock}"/>
-                <TextBox x:Name="TBKolich" Text="{Binding  Количество}" Grid.Column="1" MaxLength="10" Grid.Row="5" Margin="10" HorizontalAlignment="Left" Style="{StaticResource ModernTextbox}"/>
+                <TextBox x:Name="TBKolich" Text="{Binding  Количество}" PreviewTextInput="TBKoliches_PreviewTextInput" Grid.Column="1" MaxLength="10" Grid.Row="5" Margin="10" HorizontalAlignment="Left" Style="{StaticResource ModernTextbox}"/>
 
                 <TextBlock Grid.Row="6" Text="Склад" Margin="10"  HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource ModernTextBlock}"/>
                 <ComboBox x:Name="CBCklad" DisplayMemberPath="Наименование" Grid.Column="1" Grid.Row="6" Margin="10" HorizontalAlignment="Left" Style="{StaticResource ComboBoxTheme}"/>

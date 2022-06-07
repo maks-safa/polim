@@ -10,8 +10,8 @@
 
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-            <Button x:Name="BPostHaYch" Content="Поставка на учет" Style="{StaticResource ModernButton}" Click="BPostHaYch_Click"/>
-            <Button x:Name="BCpican" Content="Списание" Style="{StaticResource ModernButton}" Click="BCpican_Click"/>
+            <Button x:Name="BPostHaYch" Content="Поставка на учет" FontSize="30" Style="{StaticResource MenuButton}" Click="BPostHaYch_Click"/>
+            <Button x:Name="BCpican" Content="Списание" FontSize="30" Style="{StaticResource MenuButton}" Click="BCpican_Click"/>
         </StackPanel>
     </Grid>
 </Page>

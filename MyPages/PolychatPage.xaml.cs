@@ -37,7 +37,7 @@ namespace Polimer.MyPages
             //// удаление из БД данных
             //var Del = (sender as Button).DataContext as Model.Polychat;
             //var Ho = ConnectBD.polimerEntities.Material.ToList();
-
+            MessageBox.Show($"Вы точно хотите удалить. Все связанные списания с этим поставщиком будут удалены", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question);
             //if (MessageBox.Show($"Вы точно хотите удалить. Все связанные материалы с этой единицей измерения будут удалены", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             //{
             //    try

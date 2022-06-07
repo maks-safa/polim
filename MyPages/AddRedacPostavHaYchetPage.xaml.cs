@@ -44,7 +44,7 @@ namespace Polimer.MyPages
                 DPData.DisplayDate = _currentPostHaYchet.Дата;
             }
 
-            
+           
 
             var listPostav = ConnectBD.polimerEntities.Poctavzik.ToList();
             var listMaterial = ConnectBD.polimerEntities.Material.ToList();
@@ -91,7 +91,7 @@ namespace Polimer.MyPages
 
             CBPolka.ItemsSource = nomerPolki;
             CBPolka.SelectedIndex = 0;
-
+            
             if (selectedPostHaYchet != null)
             {
                 CBCklad.SelectedItem = _currentCklad;
@@ -101,15 +101,36 @@ namespace Polimer.MyPages
                 CBStellag.SelectedIndex = Convert.ToInt32(_currentCtelag.НомерСтелажа)-1;
                 CBPolka.SelectedIndex = Convert.ToInt32(_currentCtelag.НомерПолки)-1;
             }
+            decimal a = 10.233M;
+
+            TBCena.Text = a.ToString("0.000",
+                   System.Globalization.CultureInfo.GetCultureInfo("en-US"));
 
         }
         private void TBKoliches_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (!Char.IsDigit(e.Text, 0))
+            if (!Char.IsDigit(e.Text, 0)) // e.Text.Contains(".") && e.Text.Contains(",")
             {
                 e.Handled = true;
+                MessageBox.Show("s");
+            }
+            else if (Char.IsPunctuation(e.Text, 0) && e.Text.Equals(".",0))
+            {
+                e.Handled = false;
+                MessageBox.Show("f");
             }
            
+
+        }
+        private void TB_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        {
+            if (!(Char.IsDigit(e.KeyChar)) && !((e.KeyChar == '.') && (((TextBox)sender).Text.IndexOf(".") == -1) && (((TextBox)sender).Text.Length != 0)))
+            {
+                if (e.KeyChar != (char)System.Windows.Forms.Keys.Back)
+                {
+                    e.Handled = true;
+                }
+            }
         }
 
         private void BSave_Click(object sender, RoutedEventArgs e)
@@ -132,11 +153,11 @@ namespace Polimer.MyPages
 
             if (string.IsNullOrWhiteSpace(TBCena.Text))
                 errors.AppendLine("Укажите цену");
-            else if ( Decimal.Parse(TBCena.Text) > 1000000000)
+            else if ( CustomParse(TBCena.Text, false) > 1000000000)
                 errors.AppendLine("В поле цена значение больше 1000000000");
             if (string.IsNullOrWhiteSpace(TBKolich.Text))
                 errors.AppendLine("Укажите Количество");
-            else if (Decimal.Parse(TBKolich.Text) > 1000000000)
+            else if (CustomParse(TBKolich.Text, true) > 1000000000)
                 errors.AppendLine("В поле цена значение больше 1000000000");
             if (CBCklad.SelectedIndex == 0)
                 errors.AppendLine("Выберите склад");
@@ -167,14 +188,12 @@ namespace Polimer.MyPages
              p.НомерСтелажа == CBStellag.Text && p.IdMaterial == selectedMaterial.IdMaterial).FirstOrDefault();
                 if(_currentPostHaYchet.IdPostHaYchet == 0)
                 {
-                    _currentCtelag.Осталось += Convert.ToDecimal(TBKolich.Text);
+                    _currentCtelag.Осталось += CustomParse(TBKolich.Text, true);
                 }
                 else
                 {
-                    _currentCtelag.Осталось +=  Convert.ToDecimal(TBKolich.Text) - old;
+                    _currentCtelag.Осталось += CustomParse(TBKolich.Text, true) - old;
                 }
-                
-
             }
             else if (ConnectBD.polimerEntities.Ctelag.Where(p => p.НомерПолки == CBPolka.Text &&
              p.НомерСтелажа == CBStellag.Text && p.Осталось != -1).Count() > 0)
@@ -187,6 +206,8 @@ namespace Polimer.MyPages
                 MessageBox.Show(errors.ToString());
                 return;
             }
+
+            
 
             if (_currentCtelag.IdCtelag == 0)
                 ConnectBD.polimerEntities.Ctelag.Add(_currentCtelag);
@@ -202,6 +223,8 @@ namespace Polimer.MyPages
             }
             
             _currentPostHaYchet.IdCtelag = _currentCtelag.IdCtelag;
+            _currentPostHaYchet.Количество = CustomParse(TBKolich.Text, true);
+            _currentPostHaYchet.Цена = CustomParse(TBCena.Text, false);
             if (_currentPostHaYchet.IdPostHaYchet == 0)
                 ConnectBD.polimerEntities.PostavHaYchet.Add(_currentPostHaYchet);
 
@@ -217,21 +240,24 @@ namespace Polimer.MyPages
             }
         }
 
-        //public decimal? CustomParse(string incomeValue, bool format)
-        //{
-        //    //decimal val;
-        //    //if (!decimal.TryParse(incomeValue.Replace(",", "").Replace(".", ""), NumberStyles.Number, CultureInfo.InvariantCulture, out val))
-        //    //    return null;
-        //    //if(format == false)
-        //    //{
-        //    //    return val / 100;
-        //    //}
-        //    //else
-        //    //{
-        //    //    return  val / 1000;
-        //    //}
-            
-        //}
+        public decimal CustomParse(string incomeValue, bool format)
+        {
+            //decimal val;
+            //if (!decimal.TryParse(incomeValue.Replace(",", "").Replace(".", ""), NumberStyles.Number, CultureInfo.InvariantCulture, out val))
+            //    return -1;
+            //if (format == false)
+            //{
+            //    return val / 100;
+            //}
+            //else
+            //{
+            //    return val / 1000;
+            //}
+            incomeValue = incomeValue.Replace(',', '.');
+            decimal.TryParse(incomeValue, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal decimalValue);
+            return decimalValue;
+
+        }
         private bool Proverka()
         {
             StringBuilder errors = new StringBuilder();
@@ -330,5 +356,6 @@ namespace Polimer.MyPages
             }
 
         }
+
     }
 }
